@@ -41,7 +41,7 @@ console.log("O produto dos valores é:", produto);
 ```
 Qual das seguintes alternativas melhor descreve o que o código faz?
 
-A) O código avalia a expressão booleana, imprime `true`, calcula o produto dos números na lista e imprime o resultado no console.
+Correta: A) O código avalia a expressão booleana, imprime `true`, calcula o produto dos números na lista e imprime o resultado no console.
 
 B) O código avalia a expressão booleana, imprime `false`, calcula o produto dos números na lista e imprime o resultado no console.
 
@@ -103,7 +103,7 @@ function analisarCredito2() {
 ```
 Se ambas as funções forem executadas com os valores fornecidos, qual será a saída exibida no console?
 
-A) Ambas as funções exibirão: 'Seu crédito foi aprovado. Saldo disponível: 400.'
+Correta: A) Ambas as funções exibirão: 'Seu crédito foi aprovado. Saldo disponível: 400.'
 
 B) analisarCredito1() exibirá: 'Seu crédito foi negado. Saldo disponível: -600.', enquanto analisarCredito2() exibirá: 'Seu crédito foi negado. Saldo disponível: -200.'
 
