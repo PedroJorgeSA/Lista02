@@ -331,6 +331,35 @@ Considere a fórumla de atualização velocidade:
     velocidade = velocidadeInicial - desaceleracao * tempo
 ```
 Seu programa deve determinar quanto tempo será necessário para que a sonda atinja uma velocidade segura de pouso, sem ultrapassar os limites estabelecidos.
+
+```
+var velocidadeInicial = 5000; // Velocidade inicial em m/s (exemplo)
+var desaceleracao = 50; // Desaceleração constante em m/s²
+var velocidadeSegura = 10; // Velocidade máxima segura para pouso
+var tmax = 200; // Tempo máximo permitido para descida
+var tmin = 100; // Tempo mínimo permitido para descida
+var t = 0; // Tempo inicial
+var velocidade = velocidadeInicial; // Começamos com a velocidade inicial
+
+while (velocidade > velocidadeSegura && t < tmax) {
+    velocidade = velocidadeInicial - (desaceleracao * t); // Atualiza a velocidade
+    t++; // Incrementa o tempo
+
+    if (velocidade <= velocidadeSegura) {
+        if (t >= tmin && t <= tmax) {
+            console.log("A sonda pode pousar com segurança em " + t + " segundos.");
+        } else {
+            console.log("A sonda não pode pousar pois está fora do tempo seguro.");
+        }
+    }
+}
+
+// Se o tempo máximo for ultrapassado sem atingir velocidade segura:
+if (t >= tmax) {
+    console.log("A sonda ultrapassou o tempo máximo permitido para pouso!");
+}
+
+```
 ______
 
 **10)** Em um sistema de análise financeira, as operações de investimento de uma empresa podem ser representadas por matrizes, onde cada linha representa um tipo de investimento e cada coluna representa um período de tempo.
@@ -363,3 +392,48 @@ Escrever("Total de investimentos acumulados:")
 ImprimirMatriz(totalInvestimentos)  
 ```
 Agora, implemente a função MultiplicarMatrizesInvestimento(matrizA, matrizB), que multiplica as duas matrizes, simulando o efeito de diferentes fatores de crescimento e impacto financeiro nos investimentos ao longo do tempo.
+
+```
+Função SomarMatrizesInvestimento(matrizA, matrizB):  
+    // Verifica se as matrizes têm o mesmo número de linhas e colunas  
+    Se tamanho(matrizA) ≠ tamanho(matrizB) então:  
+        Retornar "As matrizes não podem ser somadas. Elas têm dimensões diferentes."  
+    Senão:  
+        linhas <- tamanho(matrizA)  
+        colunas <- tamanho(matrizA[0])  
+        matrizResultado <- novaMatriz(linhas, colunas)  
+
+        # Loop para percorrer cada elemento das matrizes e calcular a soma  
+        Para i de 0 até linhas-1 faça:  
+            Para j de 0 até colunas-1 faça:  
+                matrizResultado[i][j] <- matrizA[i][j] + matrizB[i][j]  
+
+        Retornar matrizResultado  
+
+        
+        
+Função MultiplicarMatrizesInvestimento(matrizA, matrizB) 
+    Se tamanho(matrizA[0]) ≠ tamanho(matrizB) então:
+        Retornar "As matrizes não podem ser multiplicadas. O número de colunas da matriz A é diferente do número de linhas da matriz B."   
+    Senão:  
+        linhas <- tamanho(matrizA)  
+        colunas <- tamanho(matrizB[0])  
+        matrizResultado <- novaMatriz(linhas, colunas)  
+
+        Para i de 0 até linhas-1 faça:  
+            Para j de 0 até colunas-1 faça:  
+                matrizResultado[i][j] <- 0  
+                Para k de 0 até tamanho(matrizA[0])-1 faça:  
+                    matrizResultado[i][j] <- matrizResultado[i][j] + matrizA[i][k] * matrizB[k][j]  
+
+        Retornar matrizResultado
+
+    
+# Exemplo de uso da função  
+investimentosAno1 <- [[1000, 2000], [1500, 2500]]  
+investimentosAno2 <- [[1200, 1800], [1300, 2700]]  
+
+totalInvestimentos <- SomarMatrizesInvestimento(investimentosAno1, investimentosAno2)  
+Escrever("Total de investimentos acumulados:")  
+ImprimirMatriz(totalInvestimentos)  
+```
