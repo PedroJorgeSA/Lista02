@@ -274,6 +274,50 @@ Método CalcularConsumo():
 ```
 Implementação genérica para cálculo de consumo, a ser sobrescrita pelas subclasses.
 Agora, implemente as classes Carro e Moto, garantindo que ambas herdem de Veiculo e possuam métodos específicos para calcular o consumo de combustível com base na quilometragem e eficiência do veículo.
+
+```
+class Veiculo {
+    constructor(modelo, ano) {
+        this.modelo = modelo;
+        this.ano = ano;
+    }
+
+    calcularConsumo() {
+        return 0; // Método genérico, sobrescrito nas subclasses
+    }
+}
+
+class Moto extends Veiculo {
+    constructor(modelo, ano, quilometragem, eficiencia) {
+        super(modelo, ano); // Chamada correta do super() antes de acessar this
+        this.quilometragem = quilometragem;
+        this.eficiencia = eficiencia;
+    }
+
+    calcularConsumo() {
+        return this.quilometragem / this.eficiencia; // Fórmula correta
+    }
+}
+
+class Carro extends Veiculo {
+    constructor(modelo, ano, quilometragem, eficiencia) {
+        super(modelo, ano); // Chamada correta do super()
+        this.quilometragem = quilometragem;
+        this.eficiencia = eficiencia;
+    }
+
+    calcularConsumo() {
+        return this.quilometragem / this.eficiencia; // Fórmula correta
+    }
+}
+
+// Criando instâncias corretas das classes
+const minhaMoto = new Moto("CG 160", 2020, 100, 10);
+console.log(`Sua moto é do ano ${minhaMoto.ano}, modelo ${minhaMoto.modelo}, e o consumo é de ${minhaMoto.calcularConsumo()} litros.`);
+
+const meuCarro = new Carro("HB20", 2024, 90, 9);
+console.log(`Seu carro é do ano ${meuCarro.ano}, modelo ${meuCarro.modelo}, e o consumo é de ${meuCarro.calcularConsumo()} litros.`);
+```
 ______
 
 **9)** Você é um cientista da NASA e está ajudando no desenvolvimento de um sistema de pouso para sondas espaciais em Marte. Seu objetivo é calcular o tempo necessário para que a sonda reduza sua velocidade até um nível seguro para pouso, considerando uma velocidade inicial de entrada na atmosfera marciana e uma taxa de desaceleração constante causada pelo atrito atmosférico e retrofoguetes.
