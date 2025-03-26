@@ -276,42 +276,42 @@ Implementação genérica para cálculo de consumo, a ser sobrescrita pelas subc
 Agora, implemente as classes Carro e Moto, garantindo que ambas herdem de Veiculo e possuam métodos específicos para calcular o consumo de combustível com base na quilometragem e eficiência do veículo.
 
 ```
-class Veiculo {
-    constructor(modelo, ano) {
-        this.modelo = modelo;
-        this.ano = ano;
+class Veiculo { // cria a classe veiculo
+    constructor(modelo, ano) { // cria o construtor e passa os parametros modelo e ano
+        this.modelo = modelo; // define this.modelo como modelo
+        this.ano = ano; // define this.ano como ano
     }
 
-    calcularConsumo() {
-        return 0; // Método genérico, sobrescrito nas subclasses
+    calcularConsumo() { // metodo generico do calcular consumo
+        return 0; 
     }
 }
 
-class Moto extends Veiculo {
-    constructor(modelo, ano, quilometragem, eficiencia) {
+class Moto extends Veiculo { // cria a classe Moto e herda de veiculo
+    constructor(modelo, ano, quilometragem, eficiencia) { // cria o construtor e passa os parametros modelo, ano, quilometragem e eficiencia
         super(modelo, ano); // Chamada correta do super() antes de acessar this
-        this.quilometragem = quilometragem;
-        this.eficiencia = eficiencia;
+        this.quilometragem = quilometragem; // define this.quilometragem como quilometragem
+        this.eficiencia = eficiencia;   // define this.eficiencia como eficiencia
     }
 
-    calcularConsumo() {
-        return this.quilometragem / this.eficiencia; // Fórmula correta
+    calcularConsumo() { // metodo calcular consumo
+        return (this.quilometragem / this.eficiencia) + 1; // Fórmula especifica generica para calcular o consumo da moto
     }
 }
 
-class Carro extends Veiculo {
-    constructor(modelo, ano, quilometragem, eficiencia) {
+class Carro extends Veiculo { // cria a classe Carro e herda de veiculo
+    constructor(modelo, ano, quilometragem, eficiencia) { // cria o construtor e passa os parametros modelo, ano, quilometragem e eficiencia
         super(modelo, ano); // Chamada correta do super()
-        this.quilometragem = quilometragem;
-        this.eficiencia = eficiencia;
+        this.quilometragem = quilometragem; // define this.quilometragem como quilometragem
+        this.eficiencia = eficiencia; // define this.eficiencia como eficiencia
     }
 
     calcularConsumo() {
-        return this.quilometragem / this.eficiencia; // Fórmula correta
+        return (this.quilometragem / this.eficiencia) - 1;  // Fórmula especifica generica para calcular o consumo do carro
     }
 }
 
-// Criando instâncias corretas das classes
+// Criando instâncias das classes
 const minhaMoto = new Moto("CG 160", 2020, 100, 10);
 console.log(`Sua moto é do ano ${minhaMoto.ano}, modelo ${minhaMoto.modelo}, e o consumo é de ${minhaMoto.calcularConsumo()} litros.`);
 
@@ -333,31 +333,35 @@ Considere a fórumla de atualização velocidade:
 Seu programa deve determinar quanto tempo será necessário para que a sonda atinja uma velocidade segura de pouso, sem ultrapassar os limites estabelecidos.
 
 ```
-var velocidadeInicial = 5000; // Velocidade inicial em m/s (exemplo)
-var desaceleracao = 50; // Desaceleração constante em m/s²
-var velocidadeSegura = 10; // Velocidade máxima segura para pouso
-var tmax = 200; // Tempo máximo permitido para descida
-var tmin = 100; // Tempo mínimo permitido para descida
-var t = 0; // Tempo inicial
-var velocidade = velocidadeInicial; // Começamos com a velocidade inicial
+INICIO
+// Definir variáveis
+velocidadeInicial  (m/s)
+velocidadeSegura  (m/s)
+desaceleracao (m/s²)
+tempoMaximo  (s)
 
-while (velocidade > velocidadeSegura && t < tmax) {
-    velocidade = velocidadeInicial - (desaceleracao * t); // Atualiza a velocidade
-    t++; // Incrementa o tempo
+// Inicializa o tempo
+tempo <- 0
 
-    if (velocidade <= velocidadeSegura) {
-        if (t >= tmin && t <= tmax) {
-            console.log("A sonda pode pousar com segurança em " + t + " segundos.");
-        } else {
-            console.log("A sonda não pode pousar pois está fora do tempo seguro.");
-        }
-    }
-}
+// Verifica se os valores são válidos
+SE desaceleracao <= 0 ENTAO
+    EXIBIR "Erro: A desaceleração deve ser maior que zero."
+    SAIR
 
-// Se o tempo máximo for ultrapassado sem atingir velocidade segura:
-if (t >= tmax) {
-    console.log("A sonda ultrapassou o tempo máximo permitido para pouso!");
-}
+// Simulação da descida
+ENQUANTO velocidadeInicial > velocidadeSegura E tempo < tempoMaximo FAÇA
+    velocidadeInicial <- velocidadeInicial - desaceleracao
+    tempo <- tempo + 1
+
+// Verificar se a sonda atingiu a velocidade segura a tempo
+SE velocidadeInicial <= velocidadeSegura ENTAO
+    EXIBIR "Tempo necessário para pouso seguro: ", tempo, " segundos."
+SENAO
+    EXIBIR "Não foi possível reduzir a velocidade dentro do tempo máximo permitido."
+
+```
+
+FIM
 
 ```
 ______
